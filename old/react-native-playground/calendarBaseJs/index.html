@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <style>
+      body {
+        --grey-100: #e4e9f0;
+        --grey-200: #cfd7e3;
+        --grey-300: #b5c0cd;
+        --grey-800: #3e4e63;
+        --grid-gap: 1px;
+        --day-label-size: 20px;
+      }
+
+      .calendar-month {
+        position: relative;
+        /* Color of the day cell borders */
+        background-color: var(--grey-200);
+        border: solid 1px var(--grey-200);
+      }
+
+      /* Month indicator and selectors positioning */
+      .calendar-month-header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 10px;
+      }
+
+      /* Month indicator */
+      .calendar-month-header-selected-month {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      /* Month selectors positioning */
+      .calendar-month-header-selectors {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80px;
+      }
+
+      .calendar-month-header-selectors > * {
+        cursor: pointer;
+      }
+
+      /* | Mon | Tue | Wed | Thu | Fri | Sat | Sun | */
+      .day-of-week {
+        color: var(--grey-800);
+        font-size: 18px;
+        background-color: #fff;
+        padding-bottom: 5px;
+        padding-top: 10px;
+      }
+
+      .day-of-week,
+      .days-grid {
+        /* 7 equal columns for weekdays and days cells */
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+      }
+
+      .day-of-week > * {
+        /* Position the weekday label within the cell */
+        text-align: right;
+        padding-right: 5px;
+      }
+
+      .days-grid {
+        height: 100%;
+        position: relative;
+        /* Show border between the days */
+        grid-column-gap: var(--grid-gap);
+        grid-row-gap: var(--grid-gap);
+        border-top: solid 1px var(--grey-200);
+      }
+
+      .calendar-day {
+        position: relative;
+        min-height: 100px;
+        font-size: 16px;
+        background-color: #fff;
+        color: var(--grey-800);
+        padding: 5px;
+      }
+
+      /* Position the day label within the day cell */
+      .calendar-day > span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 2px;
+        width: var(--day-label-size);
+        height: var(--day-label-size);
+      }
+    </style>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script>
+      document.getElementById("app").innerHTML = `
+<!-- Parent container for the calendar month -->
+<div class="calendar-month">
+  <!-- The calendar header -->
+  <section class="calendar-month-header">
+    <!-- Month name -->
+    <div
+      id="selected-month"
+      class="calendar-month-header-selected-month"
+    >
+      July 2020
+    </div>
+
+    <!-- Pagination -->
+    <div class="calendar-month-header-selectors">
+      <span id="previous-month-selector"><</span>
+      <span id="present-month-selector">Today</span>
+      <span id="next-month-selector">></span>
+    </div>
+  </section>
+  
+  <!-- Calendar grid header -->
+  <ol
+    id="days-of-week"
+    class="day-of-week"
+  >
+    <li>Mon</li>
+    ...
+    <li>Sun</li>
+  </ol>
+
+  <!-- Calendar grid -->
+  <ol
+    id="calendar-days"
+    class="date-grid"
+  >
+    <li class="calendar-day">
+      <span>
+        1
+      </span>
+      ...
+      <span>
+        29
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+    </script>
+  </body>
+</html>
