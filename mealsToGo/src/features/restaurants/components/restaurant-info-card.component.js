@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer.component";
 const Title = styled(Text)`
   font-family: ${(props) => props.theme.fonts.heading};
   font-size: ${(props) => props.theme.fontSizes.body};
@@ -81,9 +82,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
                   CLOSED TEMPORARILY
                 </Text>
               )}
-              <View style={{ paddingLeft: 16 }} />
+              <Spacer variant="left.large" />
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-              <View style={{ paddingLeft: 16 }} />
+              <Spacer variant="left.large" />
               <Image
                 style={{ paddingLeft: 16, width: 15, height: 15 }}
                 source={{ uri: icon }}
