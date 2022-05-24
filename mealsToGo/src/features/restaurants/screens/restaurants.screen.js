@@ -27,7 +27,7 @@ export const RestaurantsScreen = () => {
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
 
   return (
     <SafeArea>
