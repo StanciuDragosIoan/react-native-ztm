@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+// import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import styled from "styled-components/native";
 import { Search } from "../components/search.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -24,11 +25,10 @@ const LoadingContainer = styled.View`
 `;
 export const RestaurantsScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = React.useState("");
-  console.log(navigation);
-  const onChangeSearch = (query) => setSearchQuery(query);
 
   const { isLoading, restaurants } = useContext(RestaurantsContext);
-
+  // const { favourites } = useContext(FavouritesContext);
+  // console.log(favourites);
   return (
     <SafeArea>
       {isLoading && (
