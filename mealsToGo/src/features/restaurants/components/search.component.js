@@ -11,7 +11,7 @@ const SearchField = styled(Searchbar)`
 const SearchContainer = styled(Text)`
   padding: 16px;
 `;
-export const Search = () => {
+export const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
   useEffect(() => {
@@ -20,6 +20,7 @@ export const Search = () => {
   return (
     <SearchContainer>
       <SearchField
+        icon={isFavouritesToggled ? "heart" : "heart-outline"}
         placeholder="Search for a location"
         value={searchKeyword}
         onSubmitEditing={() => {
@@ -28,6 +29,7 @@ export const Search = () => {
         onChangeText={(text) => {
           setSearchKeyword(text);
         }}
+        onIconPress={onFavouritesToggle}
       />
     </SearchContainer>
   );
