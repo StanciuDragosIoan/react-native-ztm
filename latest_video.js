@@ -1,14 +1,23 @@
 /*
-last video done 187 (do 188)
+last video done 192 (do 193)
 
 BUG in favourites bar (image not visible) + in favourites functionality
 
 
+(total 337 videos)
+154 videos left  May 2022
+145 videos left June 2022
 
-154 videos left
+worst case finish:
 
-worst case finish: nov 2022
+nov 2022 (estimate May)
+nov 2022 (estimate June)
 
-best case scenario august 2022
+best case scenario finish:
+ 
+august 2022 (estimate may)
+august 2022 (estimate june)
+
+
 
 */
