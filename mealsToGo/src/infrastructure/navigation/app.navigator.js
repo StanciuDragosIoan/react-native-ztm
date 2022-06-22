@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { Text } from "react-native";
 import { SafeArea } from "../../components/utility/safe-area.component";
@@ -29,12 +28,10 @@ const SettingsScreen = () => (
 
 export const Navigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={createScreenOptions}>
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Map" component={MapScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={createScreenOptions}>
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Map" component={MapScreen} />
+    </Tab.Navigator>
   );
 };
