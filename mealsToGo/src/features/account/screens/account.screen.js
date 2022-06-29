@@ -7,7 +7,6 @@ import {
   AccountContainer,
   AuthButton,
 } from "../components/account.styles";
-import { Text } from "react-native";
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>

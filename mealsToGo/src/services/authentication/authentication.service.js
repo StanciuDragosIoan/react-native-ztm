@@ -11,19 +11,21 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-export const LoginRequest = (email, password) => {
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth, "test@test.com", "test123")
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log("LOGGED IN withCheck");
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(error);
-      console.log("NOT LOGGED IN");
-    });
+export const LoginRequest = async (email, password) => {
+  console.log(email, password);
+
+  try {
+    const auth = getAuth();
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const usr = userCredential.user;
+    console.log("LOGGED IN withCheck");
+    return usr;
+  } catch (err) {
+    console.log("NOT LOGGED IN");
+    return err;
+  }
 };

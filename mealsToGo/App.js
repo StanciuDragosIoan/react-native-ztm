@@ -16,10 +16,10 @@ import { FavouritesContextProvider } from "./src/services/favourites/favourites.
 import { Navigation } from "./src/infrastructure/navigation";
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     console.log("MOUNT");
-    LoginRequest("test@test.com", "test123");
+    // LoginRequest("test@test.com", "test123");
   }, []);
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,

@@ -1,5 +1,5 @@
 import { colors } from "../../../infrastructure/theme/colors";
-import { Button } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import styled from "styled-components/native";
 export const AccountCover = styled.View`
   position: absolute;
@@ -14,6 +14,10 @@ export const AccountBackground = styled.ImageBackground.attrs({
   flex: 1;
   align-items: center;
   justify-content: center;
+`;
+
+export const AuthInput = styled(TextInput)`
+  width: 300px;
 `;
 
 export const AccountContainer = styled.View`

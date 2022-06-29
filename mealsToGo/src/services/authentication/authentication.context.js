@@ -7,17 +7,22 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  const onLogin = (email, password) => {
+  const onLogin = async (email, password) => {
     setIsLoading(true);
-    LoginRequest(email, password)
-      .then((u) => {
+    try {
+      const u = await LoginRequest(email, password);
+      if (u.code) {
+        setError(u.code);
+      } else {
         setUser(u);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setIsLoading(false);
-      });
+      }
+      // setUser(u);
+
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
   };
   return (
     <AuthenticationContext.Provider
@@ -26,6 +31,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        isAuthenticated: !!user,
       }}
     >
       {children}
