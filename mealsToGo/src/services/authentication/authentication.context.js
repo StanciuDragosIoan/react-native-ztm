@@ -1,6 +1,7 @@
 import React, { useState, createContext } from "react";
 import { LoginRequest } from "./authentication.service";
 export const AuthenticationContext = createContext();
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +25,26 @@ export const AuthenticationContextProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
+  const onRegister = (email, password, repeatedPassword) => {
+    const auth = getAuth();
+    if (password !== repeatedPassword) {
+      setError("Error: passwords do not mathch");
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -32,6 +53,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         isAuthenticated: !!user,
+        onRegister,
       }}
     >
       {children}
