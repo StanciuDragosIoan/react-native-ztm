@@ -1,12 +1,46 @@
 import React, { useState, createContext } from "react";
 import { LoginRequest } from "./authentication.service";
 export const AuthenticationContext = createContext();
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // const uid = user.uid;
+      setUser(usr);
+      setIsLoading(false);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      setIsLoading(false);
+    }
+  });
+
+  const onLogout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        setUser(null);
+        setError(null);
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
 
   const onLogin = async (email, password) => {
     setIsLoading(true);
@@ -27,6 +61,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
     const auth = getAuth();
     if (password !== repeatedPassword) {
       setError("Error: passwords do not mathch");
@@ -54,6 +89,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin,
         isAuthenticated: !!user,
         onRegister,
+        onLogout,
       }}
     >
       {children}

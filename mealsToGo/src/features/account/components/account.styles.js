@@ -51,3 +51,11 @@ export const AuthButton = styled(Button).attrs({
   padding-bottom: 10;
   padding-right: 10;
 `;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: 15px;
+`;
