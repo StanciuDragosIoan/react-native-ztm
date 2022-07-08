@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FlatList, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import styled from "styled-components/native";
 import { Search } from "../components/search.component";
@@ -10,6 +10,7 @@ import { FavouritesBar } from "../../../components/favourites/favourites-bar.com
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantList } from "../components/restaurant-list.styles";
+import { FadeInView } from "../../../components/animations/fade.animation";
 // export const RestaurantList = styled(FlatList).attrs({
 //   contentContainerStyle: {
 //     padding: 16,
@@ -45,6 +46,7 @@ export const RestaurantsScreen = ({ navigation }) => {
           onNavigate={navigation.navigate}
         />
       )}
+
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
@@ -57,7 +59,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
