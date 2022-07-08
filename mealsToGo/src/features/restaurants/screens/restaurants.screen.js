@@ -9,12 +9,12 @@ import { FavouritesContext } from "../../../services/favourites/favourites.conte
 import { FavouritesBar } from "../../../components/favourites/favourites-bar.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ActivityIndicator, Colors } from "react-native-paper";
-
-const RestaurantList = styled(FlatList).attrs({
-  contentContainerStyle: {
-    padding: 16,
-  },
-})``;
+import { RestaurantList } from "../components/restaurant-list.styles";
+// export const RestaurantList = styled(FlatList).attrs({
+//   contentContainerStyle: {
+//     padding: 16,
+//   },
+// })``;
 
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
