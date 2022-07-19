@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useCallback, useState, useEffect } from "react";
 import { List, Avatar } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -9,6 +9,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
 `;
@@ -24,8 +25,11 @@ export const SettingsScreen = ({ navigation }) => {
     setPhoto(photoUri);
   };
 
+  // useFocusEffect(() => {
+  //   getProfilePic(user);
+  // }, [user]);
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       getProfilePic(user);
     }, [user])
   );
