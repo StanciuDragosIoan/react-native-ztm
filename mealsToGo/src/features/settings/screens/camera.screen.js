@@ -5,10 +5,17 @@ import { View, TouchableOpacity } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Text } from "../../../components/typography/text.component";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Pressable } from "react-native";
+
 const ProfileCamera = styled(Camera)`
   width: 100%;
   height: 100%;
+  flex: 1;
+`;
+
+const InnerSnap = styled.View`
+  width: 100%;
+  height: 100%;
+  z-index: 999;
 `;
 export const CameraScreen = ({ navigation }) => {
   const cameraRef = useRef();
@@ -18,6 +25,7 @@ export const CameraScreen = ({ navigation }) => {
   const snap = async () => {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
+      console.log(photo);
       AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
       navigation.goBack();
     }
@@ -36,11 +44,13 @@ export const CameraScreen = ({ navigation }) => {
     return <Text>No access to camera</Text>;
   }
   return (
-    <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={snap}>
-      <ProfileCamera
-        ref={(camera) => (cameraRef.current = camera)}
-        type={Camera.Constants.Type.front}
-      ></ProfileCamera>
-    </TouchableOpacity>
+    <ProfileCamera
+      ref={(camera) => (cameraRef.current = camera)}
+      type={Camera.Constants.Type.front}
+    >
+      <TouchableOpacity onPress={snap}>
+        <InnerSnap />
+      </TouchableOpacity>
+    </ProfileCamera>
   );
 };

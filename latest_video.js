@@ -1,5 +1,5 @@
 /*
-last video done 219 (do 220)
+last video done 224 (do 225)
 
 BUG in favourites bar (image not visible) + in favourites functionality
 
